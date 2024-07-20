@@ -5,6 +5,7 @@
   --secondary: #87819d;
   --accent: #13b874;
   --text: #f2fbf8;
+  --dark-primary: #2a2152;
 }
 
 * {
@@ -16,13 +17,10 @@ html {
   scroll-behavior: smooth;
 }
 
-h1 {
-  color: #3b306c;
-}
-
 body {
   font-family: "Inter", sans-serif;
-  color: #3b306c;
+  color: var(--text);
+  background-color: var(--primary);
 }
 button {
   display: inline-block;

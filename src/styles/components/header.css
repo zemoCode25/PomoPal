@@ -1,1 +1,46 @@
+.header__container {
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--dark-primary);
+  margin-inline: 0.5rem;
+}
 
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo__text {
+  font-size: 1.5rem;
+}
+
+.header__button {
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: var(--accent);
+  padding: 0.3em 0.6em;
+}
+
+/* xs */
+/* @media (min-width: 475px) {} */
+
+/* sm */
+/* @media (min-width: 640px) {} */
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
