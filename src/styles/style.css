@@ -1,3 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+:root {
+  --primary: #3b306c;
+  --secondary: #87819d;
+  --accent: #13b874;
+  --text: #f2fbf8;
+}
+
+* {
+  margin: 0;
+  line-height: calc(1em + 0.5rem);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 h1 {
-  color: blue;
+  color: #3b306c;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+}
+button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
