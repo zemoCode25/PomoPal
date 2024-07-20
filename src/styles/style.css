@@ -2,15 +2,18 @@
 
 :root {
   --primary: #3b306c;
-  --secondary: #87819d;
   --accent: #13b874;
   --text: #f2fbf8;
   --dark-primary: #2a2152;
+  --secondary: #483c7f;
+
+  --bold: 700;
 }
 
 * {
   margin: 0;
   line-height: calc(1em + 0.5rem);
+  color: inherit;
 }
 
 html {
@@ -21,7 +24,9 @@ body {
   font-family: "Inter", sans-serif;
   color: var(--text);
   background-color: var(--primary);
+  box-sizing: border-box;
 }
+
 button {
   display: inline-block;
   padding: 0;

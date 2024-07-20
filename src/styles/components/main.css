@@ -1,24 +1,72 @@
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  color: var(--text);
+}
+
+.timer__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text);
+  width: 550px;
+  max-width: 550px;
+  padding: 2em 1em;
+  border-radius: 7px;
+  margin: 1rem;
+  background-color: var(--secondary);
+}
+
+.timer__options {
+  display: flex;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.timer__button--option {
+  font-size: 0.85rem;
+  padding: 0.4em 0.5em;
+  border-radius: 5px;
+  transition: opacity 0.3s ease;
+}
+
+.active__button {
+  background-color: var(--accent);
+  font-weight: var(--bold);
+}
+
+.timer__button--option:hover {
+  opacity: 80%;
+}
+
+.timer__button--forward {
+  display: flex;
+  justify-content: center;
+}
+
 .timer__circle {
   position: relative;
-  width: 100px;
-  height: 100px;
+  margin-bottom: 1rem;
 }
 
 .timer__svg {
   transform: rotate(-90deg);
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }
 
 .timer__path-bg {
   fill: none;
-  stroke: #f3f3f3;
+  stroke: var(--text);
   stroke-width: 3.8;
 }
 
 .timer__path {
   fill: none;
-  stroke: #4caf50;
+  stroke: var(--accent);
   stroke-width: 3.8;
   stroke-linecap: round;
   transition: stroke-dasharray 1s linear;
@@ -29,6 +77,35 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1.5em;
+  font-size: 2rem;
+  font-weight: var(--bold);
   text-align: center;
+}
+
+.timer__controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 100%;
+  gap: 100;
+}
+
+.timer__button--start {
+  font-size: 1.3rem;
+  font-weight: var(--bold);
+  padding: 0.3em 0.8em;
+  background-color: var(--accent);
+  border-radius: 5px;
+}
+
+.timer__button--forward {
+  font-size: 100rem;
+  position: absolute;
+  right: 30%;
+  transition: opacity 0.3s ease;
+}
+
+.timer__button--forward:hover {
+  opacity: 80%;
 }

@@ -26,9 +26,15 @@
       <section class="timer">
         <div class="timer__container">
           <div class="timer__options">
-            <button class="timer__button timer__button--option"></button>
-            <button class="timer__button timer__button--option"></button>
-            <button class="timer__button timer__button--option"></button>
+            <button class="timer__button timer__button--option active__button">
+              Pomodoro
+            </button>
+            <button class="timer__button timer__button--option">
+              Short Break
+            </button>
+            <button class="timer__button timer__button--option">
+              Long Break
+            </button>
           </div>
           <div class="timer__circle">
             <svg class="timer__svg" viewBox="0 0 36 36">
@@ -46,15 +52,18 @@
                 a 15.9155 15.9155 0 0 1 0 -31.831"
               />
             </svg>
-            <span class="timer__display">25:00</span>
+            <span class="timer__display">1:00</span>
           </div>
           <div class="timer__controls">
-            <button class="timer__button timer__button--stop"></button>
-            <button class="timer__button timer__button--forward"></button>
+            <button class="timer__button timer__button--start">Start</button>
+            <button class="timer__button timer__button--forward">
+              <span class="material-symbols-outlined"> fast_forward </span>
+            </button>
           </div>
         </div>
       </section>
     </main>
     <script type="module" src="./src/main.js"></script>
+    <script src="./src/js/time_progress.js"></script>
   </body>
 </html>
