@@ -109,3 +109,38 @@
 .timer__button--forward:hover {
   opacity: 80%;
 }
+
+/* xs */
+@media (min-width: 475px) {
+  .timer__svg {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* sm */
+@media (min-width: 640px) {
+  .timer__svg {
+    width: 3000px;
+    height: 300px;
+  }
+  .timer__display {
+    font-size: 2.5rem;
+  }
+
+  .timer__button--option {
+    font-size: 1rem;
+  }
+}
+
+/* md */
+/* @media (min-width: 768px) {} */
+
+/* lg */
+/* @media (min-width: 1024px) {} */
+
+/* xl */
+/* @media (min-width: 1280px) {} */
+
+/* 2xl */
+/* @media (min-width: 1536px) {} */
