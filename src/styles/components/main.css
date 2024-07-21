@@ -121,7 +121,7 @@
 /* sm */
 @media (min-width: 640px) {
   .timer__svg {
-    width: 3000px;
+    width: 300px;
     height: 300px;
   }
   .timer__display {
