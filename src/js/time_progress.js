@@ -45,8 +45,7 @@ timerOptions.forEach((timerOption) => {
     removeActiveButton();
     timerOption.classList.add("active__button");
     timerOptionActive.dataset.currentTimer = timerOption.dataset.id;
-    const currentTimer = getCurrentTimer();
-    display.textContent = `${currentTimer}:00`;
+    switchOption();
   });
 });
 
@@ -67,25 +66,38 @@ const currentRunningTime = {
   time: 0,
   currentTimer: 0,
 };
+
 let interval;
 
 timerButton.addEventListener("click", () => {
   changeTimerButtonText();
   currentRunningTime.currentTimer = getCurrentTimer();
 
-  if (currentRunningTime.paused) {
-    currentRunningTime.paused = false;
-    runTimer();
-  } else if (timer.currentState === "running") {
-    currentRunningTime.time = currentRunningTime.currentTimer * 60;
-    runTimer();
+  if (timer.currentState === "running") {
+    if (!currentRunningTime.paused) {
+      currentRunningTime.time = currentRunningTime.currentTimer * 60;
+      runTimer();
+    } else {
+      runTimer();
+    }
   } else {
     stopTimer();
   }
+  9;
+  // if (currentRunningTime.paused) {
+  //   currentRunningTime.paused = false;
+  //   runTimer();
+  // } else if (timer.currentState === "running") {
+  //   console.log("eyyy");
+  //   currentRunningTime.time = currentRunningTime.currentTimer * 60;
+  //   runTimer();
+  // } else {
+  //   console.log("taph taph");
+  //   stopTimer();
+  // }
 });
 
 function runTimer() {
-  if (currentRunningTime.paused) return;
   if (interval) clearInterval(interval);
   interval = setInterval(updateTime, 1000);
 }
@@ -113,4 +125,19 @@ function updateTime() {
       100;
     path.style.strokeDasharray = `${progress}, 100`;
   }
+}
+
+function switchOption() {
+  // Reset the interval/timer
+  clearInterval(interval);
+  interval = null;
+
+  // Set the current timer and paused bool in order
+  currentRunningTime.currentTimer = getCurrentTimer();
+  currentRunningTime.paused = false;
+  display.textContent = `${currentRunningTime.currentTimer}:00`;
+
+  // Changing the current state
+  timer.currentState = "stopped";
+  timerButton.textContent = "Start";
 }
