@@ -25,14 +25,23 @@
     <main>
       <section class="timer">
         <div class="timer__container">
-          <div class="timer__options" data-state="pomodoro">
-            <button class="timer__button timer__button--option active__button">
+          <div class="timer__options" data-current-timer="pomodoro">
+            <button
+              class="timer__option timer__button--option active__button"
+              data-id="pomodoro"
+            >
               Pomodoro
             </button>
-            <button class="timer__button timer__button--option">
+            <button
+              class="timer__option timer__button--option"
+              data-id="short_break"
+            >
               Short Break
             </button>
-            <button class="timer__button timer__button--option">
+            <button
+              class="timer__option timer__button--option"
+              data-id="long_break"
+            >
               Long Break
             </button>
           </div>

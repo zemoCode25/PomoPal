@@ -8,18 +8,44 @@ const timer = {
   session: 4,
 };
 
-const timerButtons = document.querySelectorAll(".timer__button");
+const timerOptionActive = document.querySelector(".timer__options");
+const timerOptions = document.querySelectorAll(".timer__option");
+
+const display = document.querySelector(".timer__display");
+
+const getCurrentTimer = () => {
+  const currentTimerOption = timerOptionActive.dataset.currentTimer;
+  let currentTimer;
+
+  switch (currentTimerOption) {
+    case "pomodoro":
+      currentTimer = timer.pomodoro;
+      break;
+    case "long_break":
+      currentTimer = timer.longBreak;
+      break;
+    case "short_break":
+      currentTimer = timer.shortBreak;
+      break;
+    default:
+      return;
+  }
+  return currentTimer;
+};
 
 function removeActiveButton() {
-  timerButtons.forEach((button) => {
+  timerOptions.forEach((button) => {
     button.classList.remove("active__button");
   });
 }
 
-timerButtons.forEach((timerButton) => {
-  timerButton.addEventListener("click", () => {
+timerOptions.forEach((timerOption) => {
+  timerOption.addEventListener("click", () => {
     removeActiveButton();
-    timerButton.classList.add("active__button");
+    timerOption.classList.add("active__button");
+    timerOptionActive.dataset.currentTimer = timerOption.dataset.id;
+    const currentTimer = getCurrentTimer();
+    display.textContent = `${currentTimer}:00`;
   });
 });
 
@@ -35,25 +61,25 @@ function changeTimerButtonText() {
 
 timerStart.addEventListener("click", () => {
   changeTimerButtonText();
-  const display = document.querySelector(".timer__display");
   const path = document.querySelector(".timer__path");
-  let time = timer.pomodoro * 60; // 25 minutes in seconds
+  const currentTimer = getCurrentTimer();
+  let time = currentTimer * 60;
 
   let interval = setInterval(function () {
     if (time <= 0) {
       clearInterval(interval);
-      timerButton.textContent = "Start";
+      timerStart.textContent = "Start";
       path.style.strokeDasharray = `0, 100`;
-      display.textContent = "1:00";
+      display.textContent = `${currentTimer}:00`;
     } else {
-      timer.pomodoro -= 1;
+      time -= 1;
       let minutes = Math.floor(time / 60);
       let seconds = time % 60;
       display.textContent = `${minutes}:${
         seconds < 10 ? "0" + seconds : seconds
       }`;
 
-      let progress = (1 - timer.pomodoro / (1 * 60)) * 100;
+      let progress = (1 - time / (currentTimer * 60)) * 100;
       path.style.strokeDasharray = `${progress}, 100`;
     }
   }, 1000);
