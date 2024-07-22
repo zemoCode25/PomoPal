@@ -1,4 +1,4 @@
-const timerStart = document.querySelector("#timer__start");
+const timerButton = document.querySelector("#timer__start");
 
 // Timer Default values object;
 const timer = {
@@ -6,6 +6,7 @@ const timer = {
   shortBreak: 5,
   longBreak: 15,
   session: 4,
+  currentState: "stopped",
 };
 
 const timerOptionActive = document.querySelector(".timer__options");
@@ -50,37 +51,66 @@ timerOptions.forEach((timerOption) => {
 });
 
 function changeTimerButtonText() {
-  if (timerStart.dataset.state === "stopped") {
-    timerStart.textContent = "Pause";
-    timerStart.dataset.state = "running";
+  if (timer.currentState === "stopped") {
+    timerButton.textContent = "Pause";
+    timer.currentState = "running";
   } else {
-    timerStart.textContent = "Start";
-    timerStart.dataset.state = "stopped";
+    timerButton.textContent = "Start";
+    timer.currentState = "stopped";
   }
+
+  console.log(timer.currentState);
 }
 
-timerStart.addEventListener("click", () => {
+const currentRunningTime = {
+  paused: false,
+  time: 0,
+  currentTimer: 0,
+};
+let interval;
+
+timerButton.addEventListener("click", () => {
   changeTimerButtonText();
-  const path = document.querySelector(".timer__path");
-  const currentTimer = getCurrentTimer();
-  let time = currentTimer * 60;
+  currentRunningTime.currentTimer = getCurrentTimer();
 
-  let interval = setInterval(function () {
-    if (time <= 0) {
-      clearInterval(interval);
-      timerStart.textContent = "Start";
-      path.style.strokeDasharray = `0, 100`;
-      display.textContent = `${currentTimer}:00`;
-    } else {
-      time -= 1;
-      let minutes = Math.floor(time / 60);
-      let seconds = time % 60;
-      display.textContent = `${minutes}:${
-        seconds < 10 ? "0" + seconds : seconds
-      }`;
-
-      let progress = (1 - time / (currentTimer * 60)) * 100;
-      path.style.strokeDasharray = `${progress}, 100`;
-    }
-  }, 1000);
+  if (currentRunningTime.paused) {
+    currentRunningTime.paused = false;
+    runTimer();
+  } else if (timer.currentState === "running") {
+    currentRunningTime.time = currentRunningTime.currentTimer * 60;
+    runTimer();
+  } else {
+    stopTimer();
+  }
 });
+
+function runTimer() {
+  if (currentRunningTime.paused) return;
+  if (interval) clearInterval(interval);
+  interval = setInterval(updateTime, 1000);
+}
+
+function stopTimer() {
+  if (interval) clearInterval(interval);
+  currentRunningTime.paused = true;
+}
+
+function updateTime() {
+  const path = document.querySelector(".timer__path");
+  if (currentRunningTime.time <= 0) {
+    stopTimer(interval);
+    timerButton.textContent = "Start";
+    path.style.strokeDasharray = `0, 100`;
+    display.textContent = `${currentRunningTime.currentTimer}:00`;
+  } else {
+    currentRunningTime.time -= 1;
+    let minutes = Math.floor(currentRunningTime.time / 60);
+    let seconds = currentRunningTime.time % 60;
+    display.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+
+    let progress =
+      (1 - currentRunningTime.time / (currentRunningTime.currentTimer * 60)) *
+      100;
+    path.style.strokeDasharray = `${progress}, 100`;
+  }
+}
