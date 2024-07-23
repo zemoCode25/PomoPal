@@ -6,7 +6,6 @@ const timer = {
   shortBreak: 5,
   longBreak: 15,
   session: 4,
-  currentState: "stopped",
 };
 
 const timerOptionActive = document.querySelector(".timer__options");
@@ -40,6 +39,9 @@ function removeActiveButton() {
   });
 }
 
+const clickSound = document.querySelector("#click");
+const alarmSound = document.querySelector("#alarm");
+
 timerOptions.forEach((timerOption) => {
   timerOption.addEventListener("click", () => {
     removeActiveButton();
@@ -49,31 +51,31 @@ timerOptions.forEach((timerOption) => {
   });
 });
 
-function changeTimerButtonText() {
-  if (timer.currentState === "stopped") {
-    timerButton.textContent = "Pause";
-    timer.currentState = "running";
-  } else {
-    timerButton.textContent = "Start";
-    timer.currentState = "stopped";
-  }
-
-  console.log(timer.currentState);
-}
-
 const currentRunningTime = {
   paused: false,
   time: 0,
   currentTimer: 0,
+  currentState: "stopped",
 };
+
+function changeTimerButtonText() {
+  if (currentRunningTime.currentState === "stopped") {
+    timerButton.textContent = "Pause";
+    currentRunningTime.currentState = "running";
+  } else {
+    timerButton.textContent = "Start";
+    currentRunningTime.currentState = "stopped";
+  }
+}
 
 let interval;
 
 timerButton.addEventListener("click", () => {
   changeTimerButtonText();
   currentRunningTime.currentTimer = getCurrentTimer();
+  clickSound.play();
 
-  if (timer.currentState === "running") {
+  if (currentRunningTime.currentState === "running") {
     if (!currentRunningTime.paused) {
       currentRunningTime.time = currentRunningTime.currentTimer * 60;
       runTimer();
@@ -83,18 +85,6 @@ timerButton.addEventListener("click", () => {
   } else {
     stopTimer();
   }
-  9;
-  // if (currentRunningTime.paused) {
-  //   currentRunningTime.paused = false;
-  //   runTimer();
-  // } else if (timer.currentState === "running") {
-  //   console.log("eyyy");
-  //   currentRunningTime.time = currentRunningTime.currentTimer * 60;
-  //   runTimer();
-  // } else {
-  //   console.log("taph taph");
-  //   stopTimer();
-  // }
 });
 
 function runTimer() {
@@ -110,6 +100,7 @@ function stopTimer() {
 function updateTime() {
   const path = document.querySelector(".timer__path");
   if (currentRunningTime.time <= 0) {
+    alarmSound.play();
     stopTimer(interval);
     timerButton.textContent = "Start";
     path.style.strokeDasharray = `0, 100`;
@@ -136,8 +127,7 @@ function switchOption() {
   currentRunningTime.currentTimer = getCurrentTimer();
   currentRunningTime.paused = false;
   display.textContent = `${currentRunningTime.currentTimer}:00`;
-
   // Changing the current state
-  timer.currentState = "stopped";
+  currentRunningTime.currentState = "stopped";
   timerButton.textContent = "Start";
 }
