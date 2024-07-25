@@ -8,15 +8,48 @@
   flex-direction: column;
   width: 550px;
   max-width: 550px;
+  margin: 1rem;
 }
 
 .todo__banner {
   display: flex;
   justify-content: space-between;
-  gap: 10rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid var(--secondary);
 }
 
 .todo__button--add-task {
   width: fit-content;
-  margin-left: auto;
+}
+
+.todo__button--todo-option {
+  padding: 1.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.todo__button--todo-option:hover {
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+.todo__container--input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.todo__input {
+  color: inherit;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--secondary);
+  padding: 0.3rem;
+  width: 12rem;
+  outline: none;
 }

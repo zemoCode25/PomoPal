@@ -65,7 +65,7 @@
           </div>
           <div class="timer__controls">
             <button
-              class="timer__button timer__button--start"
+              class="timer__button timer__button--start button-1"
               id="timer__start"
               data-state="start"
             >
@@ -73,9 +73,6 @@
             </button>
             <audio src="./public/audio/click_sound.mp3" id="click"></audio>
             <audio src="./public/audio/alarm_clock.mp3" id="alarm"></audio>
-            <button class="timer__button timer__button--forward">
-              <span class="material-symbols-outlined"> fast_forward </span>
-            </button>
           </div>
         </div>
       </section>
@@ -84,11 +81,18 @@
         <div class="todo__container">
           <div class="todo__banner">
             <h2 class="todo__h2">Tasks</h2>
-            <span class="material-symbols-outlined"> more_vert </span>
+            <span
+              class="todo__button todo__button--todo-option material-symbols-outlined"
+            >
+              more_vert
+            </span>
           </div>
-          <button class="todo__button todo__button--add-task button-1">
-            Add Task
-          </button>
+          <div class="todo__container--input">
+            <input type="text" class="todo__input" placeholder="Enter task" />
+            <button class="todo__button todo__button--add-task button-1">
+              Add Task +
+            </button>
+          </div>
         </div>
       </section>
     </main>
