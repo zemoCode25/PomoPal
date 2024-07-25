@@ -1,0 +1,22 @@
+.todo {
+  display: flex;
+  justify-content: center;
+}
+
+.todo__container {
+  display: flex;
+  flex-direction: column;
+  width: 550px;
+  max-width: 550px;
+}
+
+.todo__banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+}
+
+.todo__button--add-task {
+  width: fit-content;
+  margin-left: auto;
+}

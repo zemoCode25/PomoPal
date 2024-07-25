@@ -15,3 +15,23 @@
 
 /* 2xl */
 /* @media (min-width: 1536px) {} */
+
+.button-1 {
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: var(--accent);
+  padding: 0.3em 0.6em;
+  transition: box-shadow 0.3s easessss;
+}
+
+.button-1:hover {
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.button-1:active {
+  opacity: 95%;
+}
