@@ -36,3 +36,8 @@
 .button-1:active {
   opacity: 95%;
 }
+
+.link-1 {
+  font-weight: var(--bold);
+  color: var(--accent);
+}
