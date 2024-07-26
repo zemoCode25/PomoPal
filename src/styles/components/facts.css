@@ -1,0 +1,28 @@
+.facts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.facts__container {
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+}
+
+.facts__h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.facts__h4 {
+  font-size: 1.5rem;
+  margin-block: 1rem;
+}
+
+.facts__a {
+  font-weight: var(--bold);
+  color: var(--accent);
+}
