@@ -91,14 +91,38 @@
               more_vert
             </span>
           </div>
-          <div class="todo__container--input">
-            <input type="text" class="todo__input" placeholder="Enter task" />
-            <button class="todo__button todo__button--add-task button-1">
-              Add Task +
-            </button>
+          <div class="todo__container--list" id="todo_container">
+            <div class="todo__input--container">
+              <input
+                type="text"
+                class="todo__input"
+                id="todo_input"
+                placeholder="Enter task"
+              />
+              <button
+                class="todo__button todo__button--add-task button-1"
+                id="add_task_button"
+              >
+                Add Task +
+              </button>
+            </div>
+            <ul class="todo__ul">
+              <li class="todo__li">
+                <div class="todo__container--check-task">
+                  <i class="fa-solid fa-check todo__i"></i>
+                  <p>MALIGO HAHAHAAH</p>
+                </div>
+                <span
+                  class="todo__button todo__button--todo-action material-symbols-outlined"
+                >
+                  more_vert
+                </span>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
+
       <section class="facts">
         <div class="facts__container">
           <h3 class="facts__h3">
@@ -177,5 +201,6 @@
     </main>
     <script type="module" src="./src/main.js"></script>
     <script src="./src/js/time_progress.js"></script>
+    <script src="./src/js/todo.js"></script>
   </body>
 </html>
