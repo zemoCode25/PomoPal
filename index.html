@@ -20,14 +20,27 @@
         <span class="material-symbols-outlined"> timer </span>
         <h1 class="logo__text">PomoPal</h1>
       </div>
-      <button class="header__button button-1">
+      <button class="header__button button-1" id="header_button">
         <span class="material-symbols-outlined"> settings </span>
         <span class="header__settings-text">Settings</span>
       </button>
-      <div class="overlay">
-        <div class="box"></div>
-      </div>
     </header>
+
+    <div class="overlay"></div>
+    <div class="setting">
+      <h3>Setting</h3>
+      <span></span>
+      <h4>Timer(minutes)</h4>
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <h4>Theme</h4>
+      <div>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </div>
 
     <main>
       <section class="timer">
@@ -191,7 +204,7 @@
       </footer>
     </main>
     <script type="module" src="./src/main.js"></script>
-    <script type="module" src="./src/main.js"></script>
+    <script src="./src/js/overlay.js"></script>
     <script src="./src/js/time_progress.js"></script>
     <script src="./src/js/todo.js"></script>
   </body>
