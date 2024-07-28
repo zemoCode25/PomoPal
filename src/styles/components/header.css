@@ -19,6 +19,13 @@
   display: none;
 }
 
+.overlay {
+  position: fixed;
+  inset: 0 0 0 0;
+  background-color: black;
+  z-index: 100;
+}
+
 /* xs */
 @media (min-width: 475px) {
   .header__settings-text {
