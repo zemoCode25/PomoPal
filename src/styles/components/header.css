@@ -34,9 +34,7 @@
 .setting-active {
   display: flex;
   flex-direction: column;
-  background-color: aqua;
-  width: 100px;
-  height: 100px;
+  background-color: var(--secondary);
   position: absolute;
   top: 50%;
   left: 50%;
