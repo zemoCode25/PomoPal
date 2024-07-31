@@ -22,32 +22,36 @@
       </div>
       <button class="header__button button-1" id="header_button">
         <span class="material-symbols-outlined"> settings </span>
-        <span class="header__settings-text">Settings</span>
+        <span class="header__settings-text">Setting</span>
       </button>
     </header>
 
     <div class="overlay"></div>
     <div class="setting">
-      <h3>Setting</h3>
-      <span></span>
-      <h4>Timer(minutes)</h4>
-      <div>
-        <div>
+      <div class="setting__container setting__container--headline">
+        <h3 class="setting__h3">Setting</h3>
+        <span class="setting__divider"></span>
+      </div>
+      <h4 class="gray-text">Timer(minutes)</h4>
+      <div class="setting__container setting__container--timer">
+        <div class="setting__container setting__container--number">
           <strong><p>Pomodoro</p></strong>
           <input type="number" min="1" max="100" />
         </div>
-        <div>
+        <div class="setting__container setting__container--number">
           <strong><p>Short Break</p></strong>
           <input type="number" min="1" max="100" />
         </div>
-        <div>
+        <div class="setting__container setting__container--number">
           <strong><p>Long Break</p></strong>
           <input type="number" min="1" max="100" />
         </div>
       </div>
-      <h4>Theme</h4>
-      <div>
-        <span></span><span></span><span></span><span></span><span></span>
+      <h4 class="gray-text">Color Theme</h4>
+      <div class="setting__container setting__container--color-theme">
+        <span class="setting__span"></span><span class="setting__span"></span
+        ><span class="setting__span"></span><span class="setting__span"></span
+        ><span class="setting__span"></span>
       </div>
     </div>
 

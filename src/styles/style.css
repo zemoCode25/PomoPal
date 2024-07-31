@@ -4,9 +4,12 @@
   --primary: #3b306c;
   --accent: #13b874;
   --text: #f2fbf8;
+  --white: #fff;
   --dark-primary: #2a2152;
   --secondary: #483c7f;
   --bold: 700;
+  --gray: #8f8e8e;
+  --black: #000;
 }
 
 * {
