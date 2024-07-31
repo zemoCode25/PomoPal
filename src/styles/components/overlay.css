@@ -95,3 +95,27 @@
 .setting__container--color-theme span:nth-child(5) {
   background-color: rgb(103, 4, 52);
 }
+
+.setting__container--buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.setting__button {
+  width: 100%;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border-radius: 3px;
+}
+
+.setting__button--cancel {
+  border: 1px solid var(--black);
+  background-color: transparent;
+}
+
+.setting__button--save {
+  background-color: var(--black);
+  color: var(--text);
+}
