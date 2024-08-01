@@ -1,9 +1,14 @@
-const overlay = document.querySelector(".overlay");
-const box = document.querySelector(".box");
-const settingButton = document.querySelector("#header_button");
-const setting = document.querySelector(".setting");
+import { overlay, setting } from "./modal.js";
 
 overlay.addEventListener("click", () => {
-  overlay.classList.remove("overlay-active");
-  setting.classList.remove("setting-active");
+  removeOverlay();
+  removeSettingModal();
 });
+
+export function removeOverlay() {
+  overlay.classList.remove("overlay-active");
+}
+
+export function removeSettingModal() {
+  setting.classList.remove("setting-active");
+}

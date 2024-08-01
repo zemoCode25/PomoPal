@@ -36,15 +36,27 @@
       <div class="setting__container setting__container--timer">
         <div class="setting__container setting__container--number">
           <strong><p>Pomodoro</p></strong>
-          <input type="number" min="1" max="100" value="25" />
+          <input
+            type="number"
+            min="1"
+            max="100"
+            value="25"
+            id="setting_input"
+          />
         </div>
         <div class="setting__container setting__container--number">
           <strong><p>Short Break</p></strong>
-          <input type="number" min="1" max="100" value="5" />
+          <input type="number" min="1" max="100" value="5" id="setting_input" />
         </div>
         <div class="setting__container setting__container--number">
           <strong><p>Long Break</p></strong>
-          <input type="number" min="1" max="100" value="15" />
+          <input
+            type="number"
+            min="1"
+            max="100"
+            value="15"
+            id="setting_input"
+          />
         </div>
       </div>
       <h4 class="gray-text">Color Theme</h4>
@@ -221,8 +233,9 @@
       </footer>
     </main>
     <script type="module" src="./src/main.js"></script>
-    <script src="./src/js/overlay.js"></script>
-    <script src="./src/js/time_progress.js"></script>
-    <script src="./src/js/todo.js"></script>
+    <script type="module" src="./src/js/modal.js"></script>
+    <script type="module" src="./src/js/overlay.js"></script>
+    <script type="module" src="./src/js/time_progress.js"></script>
+    <script type="module" src="./src/js/todo.js"></script>
   </body>
 </html>

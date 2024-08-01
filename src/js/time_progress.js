@@ -1,17 +1,45 @@
 const timerButton = document.querySelector("#timer__start");
 
 // Timer Default values object;
-const timer = {
+let timer = {
   pomodoro: 25,
   shortBreak: 5,
   longBreak: 15,
   session: 4,
 };
 
+let currentRunningTime = {
+  paused: false,
+  time: 0,
+  currentTimer: 0,
+  currentState: "stopped",
+};
+
+import { saveButton, numberInputValues } from "./modal";
+import { removeOverlay, removeSettingModal } from "./overlay";
+
+saveButton.addEventListener("click", () => {
+  const values = Object.assign(numberInputValues());
+  Object.assign(timer, values);
+  currentRunningTime.currentTimer = getCurrentTimer();
+  display.textContent = `${currentRunningTime.currentTimer}:00`;
+  removeOverlay();
+  removeSettingModal();
+});
+
 const timerOptionActive = document.querySelector(".timer__options");
 const timerOptions = document.querySelectorAll(".timer__option");
 
 const display = document.querySelector(".timer__display");
+
+timerOptions.forEach((timerOption) => {
+  timerOption.addEventListener("click", () => {
+    removeActiveButton();
+    timerOption.classList.add("active__button");
+    timerOptionActive.dataset.currentTimer = timerOption.dataset.id;
+    switchOption();
+  });
+});
 
 const getCurrentTimer = () => {
   const currentTimerOption = timerOptionActive.dataset.currentTimer;
@@ -41,22 +69,6 @@ function removeActiveButton() {
 
 const clickSound = document.querySelector("#click");
 const alarmSound = document.querySelector("#alarm");
-
-timerOptions.forEach((timerOption) => {
-  timerOption.addEventListener("click", () => {
-    removeActiveButton();
-    timerOption.classList.add("active__button");
-    timerOptionActive.dataset.currentTimer = timerOption.dataset.id;
-    switchOption();
-  });
-});
-
-const currentRunningTime = {
-  paused: false,
-  time: 0,
-  currentTimer: 0,
-  currentState: "stopped",
-};
 
 function changeTimerButtonText() {
   if (currentRunningTime.currentState === "stopped") {
