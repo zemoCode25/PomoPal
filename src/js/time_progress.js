@@ -22,7 +22,6 @@ import { removeOverlay, removeSettingModal } from "./overlay";
 saveButton.addEventListener("click", () => {
   const values = Object.assign(numberInputValues());
   Object.assign(timer, values);
-  currentRunningTime.currentTimer = getCurrentTimer();
   display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
   removeOverlay();
   removeSettingModal();
@@ -37,7 +36,8 @@ timerOptions.forEach((timerOption) => {
   timerOption.addEventListener("click", () => {
     removeActiveButton();
     timerOption.classList.add("active__button");
-    timerOptionActive.dataset.currentTimer = timerOption.dataset.id;
+    currentRunningTime.currentTimer = timerOption.dataset.id;
+    console.log(currentRunningTime.currentTimer);
     switchOption();
   });
 });
@@ -70,11 +70,15 @@ let interval;
 
 timerButton.addEventListener("click", () => {
   changeTimerButtonText();
-  currentRunningTime.currentTimer = getCurrentTimer();
   clickSound.play();
+
+  console.log(
+    `Current State: ${currentRunningTime.currentState}, Paused: ${currentRunningTime.paused}, Current Timer: ${currentRunningTime.currentTimer}`
+  );
 
   if (currentRunningTime.currentState === "running") {
     if (!currentRunningTime.paused) {
+      console.log("AYEE ERROR");
       currentRunningTime.time = timer[currentRunningTime.currentTimer] * 60;
       runTimer();
     } else {
@@ -101,14 +105,13 @@ function updateTime() {
   const path = document.querySelector(".timer__path");
   if (currentRunningTime.time <= 0) {
     alarmSound.play();
+    if (currentRunningTime.currentTimer === "pomodoro") timer.session += 1;
     switchTimerAfterRing();
+    switchOptionAfterRing();
     changeTimerNote(currentRunningTime.currentTimer);
     stopTimer(interval);
-    timer.session += 1;
     numberOfSessions.textContent = timer.session;
-    timerButton.textContent = "Start";
-    path.style.strokeDasharray = `0, 100`;
-    display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
+    resetTimer();
   } else {
     currentRunningTime.time -= 1;
     let minutes = Math.floor(currentRunningTime.time / 60);
@@ -129,17 +132,18 @@ function switchOption() {
   clearInterval(interval);
   interval = null;
   // Set the current timer and paused bool in order
-  currentRunningTime.currentTimer = getCurrentTimer();
   changeTimerNote(currentRunningTime.currentTimer);
   resetTimer();
 }
 
 function resetTimer() {
+  const path = document.querySelector(".timer__path");
   currentRunningTime.paused = false;
   display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
   // Changing the current state
   currentRunningTime.currentState = "stopped";
   timerButton.textContent = "Start";
+  path.style.strokeDasharray = `0, 100`;
 }
 
 function switchTimerAfterRing() {
@@ -148,7 +152,6 @@ function switchTimerAfterRing() {
   );
   switch (currentRunningTime.currentTimer) {
     case "pomodoro":
-      console.log("TITE HAHAAHH");
       currentRunningTime.currentTimer =
         timer.session % timer.sessionInterval !== 0 || timer.session === 0
           ? "shortBreak"
@@ -157,8 +160,7 @@ function switchTimerAfterRing() {
     default:
       currentRunningTime.currentTimer = "pomodoro";
   }
-  console.log("Before: " + currentRunningTime.currentTimer);
-  resetTimer();
+  console.log("After: " + currentRunningTime.currentTimer);
 }
 
 const timerNote = document.querySelector("#timer_note");
@@ -177,4 +179,12 @@ function changeTimerNote(currentTimer) {
     default:
       return;
   }
+}
+
+function switchOptionAfterRing() {
+  removeActiveButton();
+  const activeOption = timerOptionActive.querySelector(
+    `[data-id=${currentRunningTime.currentTimer}]`
+  );
+  activeOption.classList.add("active__button");
 }
