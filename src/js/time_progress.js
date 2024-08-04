@@ -95,14 +95,17 @@ function stopTimer() {
   currentRunningTime.paused = true;
 }
 
+const numberOfSessions = document.querySelector("#number_of_sessions");
+
 function updateTime() {
   const path = document.querySelector(".timer__path");
   if (currentRunningTime.time <= 0) {
     alarmSound.play();
     switchTimerAfterRing();
+    changeTimerNote(currentRunningTime.currentTimer);
     stopTimer(interval);
     timer.session += 1;
-    console.log(timer.session);
+    numberOfSessions.textContent = timer.session;
     timerButton.textContent = "Start";
     path.style.strokeDasharray = `0, 100`;
     display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
@@ -127,6 +130,7 @@ function switchOption() {
   interval = null;
   // Set the current timer and paused bool in order
   currentRunningTime.currentTimer = getCurrentTimer();
+  changeTimerNote(currentRunningTime.currentTimer);
   resetTimer();
 }
 
@@ -139,14 +143,38 @@ function resetTimer() {
 }
 
 function switchTimerAfterRing() {
-  switch (currentRunningTime) {
+  console.log(
+    "Before: " + currentRunningTime.currentTimer + " " + timer.session
+  );
+  switch (currentRunningTime.currentTimer) {
     case "pomodoro":
+      console.log("TITE HAHAAHH");
       currentRunningTime.currentTimer =
         timer.session % timer.sessionInterval !== 0 || timer.session === 0
           ? "shortBreak"
           : "longBreak";
+      break;
     default:
       currentRunningTime.currentTimer = "pomodoro";
   }
+  console.log("Before: " + currentRunningTime.currentTimer);
   resetTimer();
+}
+
+const timerNote = document.querySelector("#timer_note");
+
+function changeTimerNote(currentTimer) {
+  switch (currentTimer) {
+    case "pomodoro":
+      timerNote.textContent = "Focus Up!";
+      break;
+    case "shortBreak":
+      timerNote.textContent = "Time for a short break!";
+      break;
+    case "longBreak":
+      timerNote.textContent = "Time for a long break!";
+      break;
+    default:
+      return;
+  }
 }
