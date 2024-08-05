@@ -16,17 +16,6 @@ let currentRunningTime = {
   currentState: "stopped",
 };
 
-import { saveButton, numberInputValues } from "./modal";
-import { removeOverlay, removeSettingModal } from "./overlay";
-
-saveButton.addEventListener("click", () => {
-  const values = Object.assign(numberInputValues());
-  Object.assign(timer, values);
-  display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
-  removeOverlay();
-  removeSettingModal();
-});
-
 const timerOptionActive = document.querySelector(".timer__options");
 const timerOptions = document.querySelectorAll(".timer__option");
 
@@ -98,6 +87,20 @@ function stopTimer() {
   if (interval) clearInterval(interval);
   currentRunningTime.paused = true;
 }
+
+import { saveButton, numberInputValues } from "./modal";
+import { removeOverlay, removeSettingModal } from "./overlay";
+
+saveButton.addEventListener("click", () => {
+  const values = Object.assign(numberInputValues());
+  Object.assign(timer, values);
+  display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
+  removeOverlay();
+  removeSettingModal();
+  clearInterval(interval);
+  interval = null;
+  resetTimer();
+});
 
 const numberOfSessions = document.querySelector("#number_of_sessions");
 
