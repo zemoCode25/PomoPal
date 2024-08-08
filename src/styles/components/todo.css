@@ -132,7 +132,7 @@
 }
 
 .all-task__container-active {
-  display: inline-block;
+  display: block;
 }
 
 .all-task__ul {

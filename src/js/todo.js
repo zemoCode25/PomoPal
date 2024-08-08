@@ -15,7 +15,7 @@ todoButton.addEventListener("click", () => {
 
   task.innerHTML = `<div class="todo__container--check-task">
                   <i class="fa-solid fa-check todo__i"></i>
-                  <p>${inputEl.value}</p>
+                  <p>${inputEl.value.trim()}</p>
                 </div>
                 <span
                   class="todo__button todo__button--todo-action material-symbols-outlined"
@@ -28,4 +28,25 @@ todoButton.addEventListener("click", () => {
   newIcon.addEventListener("click", () => {
     newIcon.classList.toggle("todo__i--active");
   });
+
+  clearInput(inputEl);
+});
+
+function clearInput(inputEl) {
+  inputEl.value = "";
+}
+
+const allTaskButton = document.querySelector("#all-task-button");
+const allTaskContainer = document.querySelector(".all-task__container");
+
+allTaskButton.addEventListener("click", (e) => {
+  e.stopPropagation();
+  allTaskContainer.classList.toggle("all-task__container-active");
+});
+
+document.body.addEventListener("click", function (e) {
+  if (!allTaskContainer.contains(e.target) && e.target !== allTaskButton) {
+    allTaskContainer.classList.remove("all-task__container-active");
+    console.log("Closed the task container");
+  }
 });
