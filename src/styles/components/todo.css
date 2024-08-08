@@ -4,6 +4,7 @@
 }
 
 .todo__container {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 550px;
@@ -118,4 +119,39 @@
 .todo__button--todo-action:hover {
   background-color: var(--accent);
   border: none;
+}
+
+.all-task__container {
+  display: none;
+  position: absolute;
+  inset: 50px 0px auto auto;
+  background-color: var(--text);
+  padding: 0.5rem;
+  color: var(--black);
+  border-radius: 3px;
+}
+
+.all-task__container-active {
+  display: inline-block;
+}
+
+.all-task__ul {
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+.all-task__li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.all-task__li:hover {
+  background-color: var(--light-primary);
 }
