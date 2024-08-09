@@ -6,17 +6,33 @@ function appendElement(parent, child) {
   parent.append(child);
 }
 
+window.addEventListener("load", () => {
+  loadTask();
+});
+
 todoButton.addEventListener("click", () => {
-  if (inputEl.value === "") {
+  const task = inputEl.value.trim();
+
+  if (task === "") {
     return;
   }
+  createTaskEl(task);
+  saveTasksToLocalStorage(inputEl.value);
+  clearInput(inputEl);
+});
+
+function clearInput(inputEl) {
+  inputEl.value = "";
+}
+
+function createTaskEl(taskValue) {
   const task = document.createElement("li");
   task.className = "todo__li";
 
   task.innerHTML = `<div class="todo__div todo__div--task">
                   <div class="todo__container--check-task">
                     <i class="fa-solid fa-check todo__i"></i>
-                    <p>${inputEl.value.trim()}</p>
+                    <p class="todo__p">${taskValue}</p>
                   </div>
                   <span
                     class="todo__button todo__button--todo-action material-symbols-outlined"
@@ -49,13 +65,48 @@ todoButton.addEventListener("click", () => {
 
   todoOptionIcon.addEventListener("click", () => {
     taskItemOption.classList.toggle("todo__div--option-active");
+
+    const todoTextEl = task.querySelector(".todo__p, .todo__input");
+
+    // Element input and p in the list
+    if (todoTextEl.tagName.toLowerCase() === "p") {
+      replaceWithInput();
+    } else if (todoTextEl.tagName.toLowerCase() === "input") {
+      replaceWithParagraph();
+    }
+
+    function replaceWithInput() {
+      const newInputEl = document.createElement("input");
+      newInputEl.classList.add("todo__input");
+      newInputEl.value = todoTextEl.textContent.trim();
+      todoTextEl.parentNode.replaceChild(newInputEl, todoTextEl);
+    }
+
+    function replaceWithParagraph() {
+      const newPElement = document.createElement("p");
+      newPElement.classList.add("todo__p");
+      newPElement.textContent = todoTextEl.value.trim();
+
+      todoTextEl.parentNode.replaceChild(newPElement, todoTextEl);
+    }
   });
 
-  clearInput(inputEl);
-});
+  const deleteButton = task.querySelector(".todo__button--delete");
 
-function clearInput(inputEl) {
-  inputEl.value = "";
+  deleteButton.addEventListener("click", () => {
+    todoContainer.removeChild(task);
+    saveTasksToLocalStorage();
+  });
+}
+
+function loadTask() {
+  const tasks = JSON.parse(localStorage.getItem("tasks"));
+  if (!tasks) {
+    return;
+  }
+
+  let taskValues = tasks.map((task) => task.value);
+  taskValues.forEach(createTaskEl);
 }
 
 const allTaskButton = document.querySelector("#all-task-button");
@@ -72,3 +123,15 @@ document.body.addEventListener("click", function (e) {
     console.log("Closed the task container");
   }
 });
+
+function saveTasksToLocalStorage() {
+  let tasks = [];
+  const tasksEl = todoContainer.querySelectorAll("li");
+
+  tasksEl.forEach((task, index) => {
+    const taskValue = task.querySelector(".todo__p");
+    tasks.push({ index: index, value: taskValue.textContent.trim() });
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}

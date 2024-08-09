@@ -58,9 +58,8 @@ function changeTimerButtonText() {
 let interval;
 
 timerButton.addEventListener("click", () => {
-  changeTimerButtonText();
   clickSound.play();
-
+  changeTimerButtonText();
   console.log(
     `Current State: ${currentRunningTime.currentState}, Paused: ${currentRunningTime.paused}, Current Timer: ${currentRunningTime.currentTimer}`
   );
@@ -79,7 +78,6 @@ timerButton.addEventListener("click", () => {
 });
 
 function runTimer() {
-  if (interval) clearInterval(interval);
   interval = setInterval(updateTime, 1000);
 }
 
