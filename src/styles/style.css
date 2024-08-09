@@ -13,6 +13,14 @@
   --black: #000;
 }
 
+/*
+--text: #e2e0f7;
+--background: #14042a;
+--primary: #9492e4;
+--secondary: #5a228b;
+--accent: #13b874;
+*/
+
 * {
   margin: 0;
   line-height: calc(1em + 0.5rem);

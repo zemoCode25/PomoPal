@@ -13,20 +13,42 @@ todoButton.addEventListener("click", () => {
   const task = document.createElement("li");
   task.className = "todo__li";
 
-  task.innerHTML = `<div class="todo__container--check-task">
-                  <i class="fa-solid fa-check todo__i"></i>
-                  <p>${inputEl.value.trim()}</p>
+  task.innerHTML = `<div class="todo__div todo__div--task">
+                  <div class="todo__container--check-task">
+                    <i class="fa-solid fa-check todo__i"></i>
+                    <p>${inputEl.value.trim()}</p>
+                  </div>
+                  <span
+                    class="todo__button todo__button--todo-action material-symbols-outlined"
+                  >
+                    more_vert
+                  </span>
                 </div>
-                <span
-                  class="todo__button todo__button--todo-action material-symbols-outlined"
-                >
-                  more_vert
-                </span>`;
+                <div class="todo__div todo__div--option">
+                  <button class="button-2 todo__button todo__button--delete">
+                    Delete
+                  </button>
+                  <div class="todo__div todo__div--action-save">
+                    <button class="button-2 todo__button todo__button--cancel">
+                      Cancel
+                    </button>
+                    <button class="button-2 todo__button todo__button--save">
+                      Save
+                    </button>
+                  </div>
+                </div>`;
   appendElement(todoContainer, task);
 
   const newIcon = task.querySelector(".todo__i");
   newIcon.addEventListener("click", () => {
     newIcon.classList.toggle("todo__i--active");
+  });
+
+  const todoOptionIcon = task.querySelector(".todo__button--todo-action");
+  const taskItemOption = task.querySelector(".todo__div--option");
+
+  todoOptionIcon.addEventListener("click", () => {
+    taskItemOption.classList.toggle("todo__div--option-active");
   });
 
   clearInput(inputEl);

@@ -74,12 +74,13 @@
 
 .todo__li {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   background-color: var(--secondary);
   padding: 1rem 0.8rem;
   border-radius: 5px;
-  margin-bottom: 0.5rem;
   font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .todo__container--check-task {
@@ -119,6 +120,36 @@
 .todo__button--todo-action:hover {
   background-color: var(--accent);
   border: none;
+}
+
+.todo__div--task {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo__div--option {
+  max-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: max-height 0.2s ease;
+}
+
+.todo__div--option-active {
+  height: 4rem;
+  max-height: 4rem;
+}
+
+.todo__div--action-save {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.todo__button--save {
+  background-color: var(--primary);
+  border-radius: 3px;
 }
 
 .all-task__container {
