@@ -2,8 +2,11 @@ export const settingButton = document.querySelector("#header_button");
 export const setting = document.querySelector(".setting");
 
 // Created to be imported in the overlay.js file
+
+const overlay = document.querySelector(".overlay");
+
 export function getOverlay() {
-  return document.querySelector(".overlay");
+  return overlay;
 }
 
 settingButton.addEventListener("click", () => {
