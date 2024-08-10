@@ -122,9 +122,13 @@ allTaskButton.addEventListener("click", (e) => {
   allTaskContainer.classList.toggle("all-task__container-active");
 });
 
+function closeAllTaskOptions() {
+  allTaskContainer.classList.remove("all-task__container-active");
+}
+
 document.body.addEventListener("click", function (e) {
   if (!allTaskContainer.contains(e.target) && e.target !== allTaskButton) {
-    allTaskContainer.classList.remove("all-task__container-active");
+    closeAllTaskOptions();
   }
 });
 
@@ -141,6 +145,7 @@ deleteAllTaskButton.addEventListener("click", () => {
   allTasks.forEach((task) => {
     todoContainer.removeChild(task);
   });
+  closeAllTaskOptions();
   saveTasksToLocalStorage();
 });
 
@@ -152,6 +157,7 @@ removeFinishedTaskButton.addEventListener("click", () => {
       todoContainer.removeChild(task);
     }
   });
+  closeAllTaskOptions();
   saveTasksToLocalStorage();
 });
 
