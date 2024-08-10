@@ -61,40 +61,33 @@ function createTaskEl(taskValue) {
   });
 
   const todoOptionIcon = task.querySelector(".todo__button--todo-action");
-  const taskItemOption = task.querySelector(".todo__div--option");
-
   todoOptionIcon.addEventListener("click", () => {
-    taskItemOption.classList.toggle("todo__div--option-active");
-
-    const todoTextEl = task.querySelector(".todo__p, .todo__input");
-
-    // Element input and p in the list
-    if (todoTextEl.tagName.toLowerCase() === "p") {
-      replaceWithInput();
-    } else if (todoTextEl.tagName.toLowerCase() === "input") {
-      replaceWithParagraph();
-    }
-
-    function replaceWithInput() {
-      const newInputEl = document.createElement("input");
-      newInputEl.classList.add("todo__input");
-      newInputEl.value = todoTextEl.textContent.trim();
-      todoTextEl.parentNode.replaceChild(newInputEl, todoTextEl);
-    }
-
-    function replaceWithParagraph() {
-      const newPElement = document.createElement("p");
-      newPElement.classList.add("todo__p");
-      newPElement.textContent = todoTextEl.value.trim();
-
-      todoTextEl.parentNode.replaceChild(newPElement, todoTextEl);
-    }
+    openTaskOptions(task);
   });
 
   const deleteButton = task.querySelector(".todo__button--delete");
-
   deleteButton.addEventListener("click", () => {
     todoContainer.removeChild(task);
+    // Save the updated list to the localstorage
+    saveTasksToLocalStorage();
+  });
+
+  const cancelButton = task.querySelector(".todo__button--cancel");
+  cancelButton.addEventListener("click", () => {
+    closeTaskOptions(task);
+  });
+
+  console.log(cancelButton);
+
+  const saveButton = task.querySelector(".todo__button--save");
+
+  saveButton.addEventListener("click", () => {
+    const inputElOption = task.querySelector(".todo__input");
+    if (inputElOption.value === "") {
+      alert("Please fill the input");
+      return;
+    }
+    closeTaskOptions(task);
     saveTasksToLocalStorage();
   });
 }
@@ -109,6 +102,18 @@ function loadTask() {
   taskValues.forEach(createTaskEl);
 }
 
+function saveTasksToLocalStorage() {
+  let tasks = [];
+  const tasksEl = todoContainer.querySelectorAll("li");
+
+  tasksEl.forEach((task, index) => {
+    const taskValue = task.querySelector(".todo__p");
+    tasks.push({ index: index, value: taskValue.textContent.trim() });
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 const allTaskButton = document.querySelector("#all-task-button");
 const allTaskContainer = document.querySelector(".all-task__container");
 
@@ -120,18 +125,41 @@ allTaskButton.addEventListener("click", (e) => {
 document.body.addEventListener("click", function (e) {
   if (!allTaskContainer.contains(e.target) && e.target !== allTaskButton) {
     allTaskContainer.classList.remove("all-task__container-active");
-    console.log("Closed the task container");
   }
 });
 
-function saveTasksToLocalStorage() {
-  let tasks = [];
-  const tasksEl = todoContainer.querySelectorAll("li");
+function openTaskOptions(task) {
+  const taskItemOption = task.querySelector(".todo__div--option");
+  taskItemOption.classList.toggle("todo__div--option-active");
 
-  tasksEl.forEach((task, index) => {
-    const taskValue = task.querySelector(".todo__p");
-    tasks.push({ index: index, value: taskValue.textContent.trim() });
-  });
+  const todoTextEl = task.querySelector(".todo__p, .todo__input");
 
-  localStorage.setItem("tasks", JSON.stringify(tasks));
+  // Element input and p in the list
+  if (todoTextEl.tagName.toLowerCase() === "p") {
+    replaceWithInput(todoTextEl);
+  } else if (todoTextEl.tagName.toLowerCase() === "input") {
+    replaceWithParagraph(todoTextEl);
+  }
+}
+
+function closeTaskOptions(task) {
+  const todoTextEl = task.querySelector(".todo__p, .todo__input");
+  const taskItemOption = task.querySelector(".todo__div--option");
+  taskItemOption.classList.remove("todo__div--option-active");
+  replaceWithParagraph(todoTextEl);
+}
+
+function replaceWithInput(todoTextEl) {
+  const newInputEl = document.createElement("input");
+  newInputEl.classList.add("todo__input");
+  newInputEl.value = todoTextEl.textContent.trim();
+  todoTextEl.parentNode.replaceChild(newInputEl, todoTextEl);
+}
+
+function replaceWithParagraph(todoTextEl) {
+  const newPElement = document.createElement("p");
+  newPElement.classList.add("todo__p");
+  newPElement.textContent = todoTextEl.value.trim();
+
+  todoTextEl.parentNode.replaceChild(newPElement, todoTextEl);
 }
