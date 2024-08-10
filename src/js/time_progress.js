@@ -18,6 +18,7 @@ let currentRunningTime = {
 
 window.addEventListener("load", () => {
   loadTimer();
+  loadColorTheme();
 });
 
 const timerOptionActive = document.querySelector(".timer__options");
@@ -97,6 +98,7 @@ saveButton.addEventListener("click", () => {
   const values = Object.assign(numberInputValues());
   saveTimerToLocalStorage(values);
   Object.assign(timer, values);
+  changeColorTheme();
   display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
   removeOverlay();
   removeSettingModal();
@@ -104,6 +106,26 @@ saveButton.addEventListener("click", () => {
   interval = null;
   resetTimer();
 });
+
+import { getColorTheme } from "./modal";
+
+function changeColorTheme() {
+  const rootEl = document.documentElement;
+  const colorTheme = getColorTheme();
+  localStorage.setItem("colorTheme", colorTheme);
+  rootEl.setAttribute("data-theme", colorTheme);
+}
+
+function loadColorTheme() {
+  const colorThemeDefault = "purple";
+  const rootEl = document.documentElement;
+  if (!localStorage.getItem("colorTheme")) {
+    rootEl.setAttribute("data-theme", colorThemeDefault);
+    return;
+  }
+  const colorTheme = localStorage.getItem("colorTheme");
+  rootEl.setAttribute("data-theme", colorTheme);
+}
 
 const numberOfSessions = document.querySelector("#number_of_sessions");
 

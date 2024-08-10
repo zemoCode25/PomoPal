@@ -34,3 +34,27 @@ cancelButton.addEventListener("click", () => {
   removeOverlay();
   removeSettingModal();
 });
+
+const colorButtons = setting.querySelectorAll(".setting__button--theme");
+
+let theme = "";
+
+colorButtons.forEach((colorButton) => {
+  console.log(colorButton);
+  colorButton.addEventListener("click", () => {
+    const colorTheme = colorButton.getAttribute("data-color");
+    theme = colorTheme;
+    removeBorder();
+    colorButton.classList.add("setting__button--theme-active");
+  });
+});
+
+export function getColorTheme() {
+  return theme;
+}
+
+function removeBorder() {
+  colorButtons.forEach((colorButton) => {
+    colorButton.classList.remove("setting__button--theme-active");
+  });
+}

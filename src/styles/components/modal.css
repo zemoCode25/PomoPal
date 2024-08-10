@@ -128,3 +128,7 @@
   border-radius: 5px;
   margin-bottom: 0.3rem;
 }
+
+.setting__button--theme-active {
+  border: 2px solid var(--black);
+}
