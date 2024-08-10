@@ -1,17 +1,59 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
+  --bold: 700;
+  --black: #000;
+  --white: #fff;
+}
+
+:root[data-theme="purple"] {
   --background: #100613;
   --primary: #c48edd;
   --accent: #c54070;
   --text: #eedcf4;
-  --white: #fff;
   --dark-primary: #260d21;
   --secondary: #7f265b;
   --light-primary: #eacaf9;
-  --bold: 700;
-  --gray: #b5b5b5;
-  --black: #000;
+}
+
+:root[data-theme="blue"] {
+  --background: #090d11;
+  --primary: #a3c1d8;
+  --accent: #4793d1;
+  --text: #e9edf0;
+  --dark-primary: #113c5c;
+  --secondary: #2b5a81;
+  --light-primary: #c6e1f6;
+}
+
+:root[data-theme="orange"] {
+  --background: #1a0f0d;
+  --primary: #dca296;
+  --accent: #ec3d18;
+  --text: #f0ebea;
+  --dark-primary: #74200f;
+  --secondary: #8f301b;
+  --light-primary: #ffd5cd;
+}
+
+:root[data-theme="yellow"] {
+  --background: #121108;
+  --primary: #d9d391;
+  --accent: #ded13f;
+  --text: #eeede2;
+  --dark-primary: #645d07;
+  --secondary: #888022;
+  --light-primary: #f6f2c9;
+}
+
+:root[data-theme="green"] {
+  --background: #070d04;
+  --primary: #afe095;
+  --accent: #80dc4d;
+  --text: #e9f4e3;
+  --dark-primary: #285b0c;
+  --secondary: #468b21;
+  --light-primary: #f7eab8;
 }
 
 /*
