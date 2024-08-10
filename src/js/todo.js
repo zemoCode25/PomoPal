@@ -128,6 +128,17 @@ document.body.addEventListener("click", function (e) {
   }
 });
 
+// const deleteAllTaskButton = allTaskContainer.querySelector(
+//   ".all-task__icon--delete"
+// );
+// const removeFinishedTaskButton = allTaskContainer.querySelector(
+//   ".all-task__icon--remove"
+// );
+
+// deleteAllTaskButton.addEventListener("click", () => {
+//   todoContainer.removeChild("li");
+// });
+
 function openTaskOptions(task) {
   const taskItemOption = task.querySelector(".todo__div--option");
   taskItemOption.classList.toggle("todo__div--option-active");

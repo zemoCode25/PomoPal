@@ -1,4 +1,6 @@
-import { overlay, setting } from "./modal.js";
+import { getOverlay, setting } from "./modal.js";
+
+const overlay = getOverlay();
 
 overlay.addEventListener("click", () => {
   removeOverlay();
