@@ -16,6 +16,10 @@ let currentRunningTime = {
   currentState: "stopped",
 };
 
+window.addEventListener("load", () => {
+  loadTimer();
+});
+
 const timerOptionActive = document.querySelector(".timer__options");
 const timerOptions = document.querySelectorAll(".timer__option");
 
@@ -31,10 +35,10 @@ timerOptions.forEach((timerOption) => {
   });
 });
 
-const getCurrentTimer = () => {
-  const currentTimer = timerOptionActive.dataset.currentTimer;
-  return currentTimer;
-};
+// const getCurrentTimer = () => {
+//   const currentTimer = timerOptionActive.dataset.currentTimer;
+//   return currentTimer;
+// };
 
 function removeActiveButton() {
   timerOptions.forEach((button) => {
@@ -91,6 +95,7 @@ import { removeOverlay, removeSettingModal } from "./overlay";
 
 saveButton.addEventListener("click", () => {
   const values = Object.assign(numberInputValues());
+  saveTimerToLocalStorage(values);
   Object.assign(timer, values);
   display.textContent = `${timer[currentRunningTime.currentTimer]}:00`;
   removeOverlay();
@@ -188,4 +193,14 @@ function switchOptionAfterRing() {
     `[data-id=${currentRunningTime.currentTimer}]`
   );
   activeOption.classList.add("active__button");
+}
+
+function saveTimerToLocalStorage(values) {
+  localStorage.setItem("timer", JSON.stringify(values));
+}
+
+function loadTimer() {
+  const savedTimer = JSON.parse(localStorage.getItem("timer"));
+  Object.assign(timer, savedTimer);
+  resetTimer();
 }

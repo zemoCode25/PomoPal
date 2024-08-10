@@ -19,3 +19,12 @@ export function numberInputValues() {
   const values = { pomodoro, shortBreak, longBreak };
   return values;
 }
+
+import { removeOverlay, removeSettingModal } from "./overlay";
+
+const cancelButton = setting.querySelector(".setting__button--cancel");
+
+cancelButton.addEventListener("click", () => {
+  removeOverlay();
+  removeSettingModal();
+});
