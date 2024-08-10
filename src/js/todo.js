@@ -34,11 +34,13 @@ function createTaskEl(taskValue) {
                     <i class="fa-solid fa-check todo__i"></i>
                     <p class="todo__p">${taskValue}</p>
                   </div>
-                  <span
-                    class="todo__button todo__button--todo-action material-symbols-outlined"
-                  >
-                    more_vert
-                  </span>
+                  <button class="todo__button todo__button--todo-action">
+                    <span
+                      class="material-symbols-outlined"
+                    >
+                      more_vert
+                    </span>
+                  </button>
                 </div>
                 <div class="todo__div todo__div--option">
                   <button class="button-2 todo__button todo__button--delete">

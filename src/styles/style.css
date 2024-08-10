@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 
 :root {
-  --primary: #3b306c;
-  --accent: #13b874;
-  --text: #f2fbf8;
+  --background: #100613;
+  --primary: #c48edd;
+  --accent: #c54070;
+  --text: #eedcf4;
   --white: #fff;
-  --dark-primary: #2a2152;
-  --secondary: #483c7f;
-  --light-primary: #c8bcff;
+  --dark-primary: #260d21;
+  --secondary: #7f265b;
+  --light-primary: #eacaf9;
   --bold: 700;
   --gray: #b5b5b5;
   --black: #000;
@@ -34,7 +35,7 @@ html {
 body {
   font-family: "Inter", sans-serif;
   color: var(--text);
-  background-color: var(--primary);
+  background-color: var(--background);
   box-sizing: border-box;
 }
 

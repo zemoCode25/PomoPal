@@ -18,7 +18,7 @@
   padding: 2em 1em;
   border-radius: 7px;
   margin: 1rem;
-  background-color: var(--secondary);
+  background-color: var(--dark-primary);
 }
 
 .timer__options {
@@ -35,7 +35,8 @@
 }
 
 .active__button {
-  background-color: var(--accent);
+  color: var(--text);
+  background-color: var(--secondary);
   font-weight: var(--bold);
 }
 
