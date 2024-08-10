@@ -128,16 +128,32 @@ document.body.addEventListener("click", function (e) {
   }
 });
 
-// const deleteAllTaskButton = allTaskContainer.querySelector(
-//   ".all-task__icon--delete"
-// );
-// const removeFinishedTaskButton = allTaskContainer.querySelector(
-//   ".all-task__icon--remove"
-// );
+const deleteAllTaskButton = allTaskContainer.querySelector(
+  ".all-task__button--delete"
+);
+const removeFinishedTaskButton = allTaskContainer.querySelector(
+  ".all-task__button--remove"
+);
 
-// deleteAllTaskButton.addEventListener("click", () => {
-//   todoContainer.removeChild("li");
-// });
+deleteAllTaskButton.addEventListener("click", () => {
+  const allTasks = todoContainer.querySelectorAll(".todo__li");
+  console.log(allTasks);
+  allTasks.forEach((task) => {
+    todoContainer.removeChild(task);
+  });
+  saveTasksToLocalStorage();
+});
+
+removeFinishedTaskButton.addEventListener("click", () => {
+  const allTasks = todoContainer.querySelectorAll(".todo__li");
+  allTasks.forEach((task) => {
+    const checkIcon = task.querySelector(".todo__i");
+    if (checkIcon.classList.contains("todo__i--active")) {
+      todoContainer.removeChild(task);
+    }
+  });
+  saveTasksToLocalStorage();
+});
 
 function openTaskOptions(task) {
   const taskItemOption = task.querySelector(".todo__div--option");

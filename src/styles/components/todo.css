@@ -172,9 +172,10 @@
   list-style: none;
 }
 
-.all-task__li {
+.all-task__button {
   display: flex;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
   cursor: pointer;
   font-size: 0.8rem;
@@ -183,6 +184,6 @@
   transition: background-color 0.3s ease;
 }
 
-.all-task__li:hover {
+.all-task__button:hover {
   background-color: var(--light-primary);
 }
